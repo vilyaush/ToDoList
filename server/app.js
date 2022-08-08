@@ -12,7 +12,7 @@ const FileStore = require('session-file-store')(session);
 
 const PORT = process.env.PORT ?? 3003; 
 
-// const userRouter = require('./routes/userRouter');
+const userRouter = require('./routes/userRouter');
 const todoRouter = require('./routes/todoRouter');
 
 
@@ -45,7 +45,7 @@ next();
 });
 
 
-// app.use('/user', userRouter);
+app.use('/user', userRouter);
 app.use('/todo', todoRouter)
 
 app.use((req, res) => { 

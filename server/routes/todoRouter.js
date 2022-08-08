@@ -10,20 +10,33 @@ router.route('/')
   })
 
   .post(async (req, res) => {
-    
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', req.body);
     const newTodo = await Doings.create(
       {
         title: req.body.title,
         user_id: req.body.user_id,
-        status: req.body.status,
-      },
+        status: false,
+      }
+    
     );
-    console.log(newTodo)
-    console.log(req.body.title);
-    res.json({ newTodo });
+    console.log('objobjobj', newTodo)
+    // console.log('titletitletitle', {title});
+    res.json( newTodo );
+
     // catch (err) {
     //     console.log(err)
     //   }
   });
+
+  // .post(async (req, res) => {
+  //   const { title }  = req.body;
+  //   console.log('iiiiiii',title);
+  //   try {
+  //     const result = await Doings.create({ title, status: false });
+  //     res.json(result);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // })
 
 module.exports = router;

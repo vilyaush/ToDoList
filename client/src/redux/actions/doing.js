@@ -7,15 +7,21 @@ export const getTodoThunk = () => async (dispatch) => {
     dispatch(getTodo(result));
   };
 
-  export const createTodoThunk = (body) => async (dispatch) => {
+  export const createTodoThunk = (data) => async (dispatch) => {
     const response = await fetch(
       `${process.env.REACT_APP_serverApi}/todo`,
       {
         credentials: 'include',
         method: 'POST',
-        body,
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
       },
     );
-    const result = await response.json();
+    if(response.ok){
+   const result = await response.json();
+   console.log('ffffffffffffffffffffffffffffff', result, 'jjjjjjjjjjjjjjjjjjjjjjjj');
     dispatch(createTodo(result));
+    }
   };

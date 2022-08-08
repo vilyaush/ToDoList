@@ -4,7 +4,7 @@ const doingReducer = (state = [], action) => {
         case 'GET_TODO':
             return payload;
         case 'CREATE_TODO':
-            return [payload.newTodo, ...state];
+            return [...state, payload];
   
       default:
         return state;

@@ -1,18 +1,25 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+// import { logOutUserThunk } from '../../redux/action/user';
 
 function NavBar() {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  // const handleLogout = () => {
+  //   dispatch(logOutUserThunk());
+  // };
+  
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
-    <div className="container-fluid">
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div className="navbar-nav">
-          <a className="nav-link active" aria-current="page" href="/">Home</a>
-          <a className="nav-link" href="#">Login</a>
-          <a className="nav-link" href="#">Logout</a>
-        </div>
-      </div>
+    <div className="navBar">
+
+    <div className="headNav">
+      <li>
+        <Link to="/">Главная</Link>
+      </li>
+      <li><Link to="/auth">Войти</Link></li>
     </div>
-  </nav>
+  </div>
   )
 }
 

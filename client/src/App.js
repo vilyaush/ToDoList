@@ -1,13 +1,18 @@
 import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './Components/NavBar/NavBar';
 // import Main from './Components/Main/Main';
-import Todo from './Components/Todo/Todo';
+import Main from './Components/Main/Main';
+import Auth from './Components/Auth/Auth';
 
 function App() {
   return (
     <div className="App">
     <NavBar/>
-    <Todo/>
+    <Main/>
+    <Routes>
+        <Route path="/auth" element={<Auth />} />
+      </Routes>
     </div>
   );
 }
