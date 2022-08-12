@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createTodoThunk } from '../../redux/actions/doing';
 
 function Todo() {
+  const { user } = useSelector((state) => state);
   const [form, setForm] = useState({});
-  const [todo, setTask] = useState({ title: ''});
+  const [todo, setTask] = useState({ title: '', user_id: ''});
 
-//   const userId = useSelector((state) => state.users.id);
+  // const userId = useSelector((state) => state.users.id);
 
   const dispatch = useDispatch();
 
@@ -36,8 +37,8 @@ function Todo() {
   return (
     <div>
      <form className="d-flex">
-        <input className="form-control me-2" type="text" value={todo.title || ''} name="title"  onChange={(e) => setTask({ title: e.target.value || '' })} placeholder="задание"/>
-        <button className="btn btn-outline-dark"  type="submit" onClick={(e) => handleSubmit(task, e)}>Добавить</button>
+        <input className="form-control me-2" type="text" value={todo.title || ''} name="title"  onChange={(e) => setTask({ title: e.target.value || '', user_id: user.id })} placeholder="задание"/>
+        <button className="btn btn-outline-dark"  type="submit" onClick={(e) => handleSubmit(todo, e)}>Добавить</button>
      </form>
    </div>
   );

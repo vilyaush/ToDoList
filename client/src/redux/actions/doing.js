@@ -11,12 +11,12 @@ export const getTodoThunk = () => async (dispatch) => {
     const response = await fetch(
       `${process.env.REACT_APP_serverApi}/todo`,
       {
-        credentials: 'include',
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
         },
         body: JSON.stringify(data),
+        credentials: 'include',
       },
     );
     if(response.ok){

@@ -45,19 +45,19 @@ export const logOutUserThunk = () => async (dispatch) => {
     dispatch(logInUser(result));
   };
   
-  // export const authUserThunk = (body) => async (dispatch) => {
-  //   try {
-  //     // console.log('THUNK_AUTH_________________________________________________________');
-  //     const response = await fetch(
-  //       `${process.env.REACT_APP_serverApi}/user/auth`,
-  //       {
-  //         credentials: 'include',
-  //       },
-  //     );
-  //     // console.log('RESPONSE FROM AUTH', response);
-  //     const result = await response.json();
-  //     dispatch(authUser(result));
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  export const authUserThunk = (body) => async (dispatch) => {
+    try {
+      // console.log('THUNK_AUTH_________________________________________________________');
+      const response = await fetch(
+        `${process.env.REACT_APP_serverApi}/user/auth`,
+        {
+          credentials: 'include',
+        },
+      );
+      // console.log('RESPONSE FROM AUTH', response);
+      const result = await response.json();
+      dispatch(authUser(result));
+    } catch (error) {
+      console.log(error);
+    }
+  };

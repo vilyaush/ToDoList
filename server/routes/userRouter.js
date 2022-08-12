@@ -47,7 +47,7 @@ router.route('/logout')
 router.route('/signin')
   .post(async (req, res) => {
     // console.log('singin999999999999');
-    const { email, password } = req.body.body;
+    const { email, password } = req.body;
     if (!email) {
       return res.json({ text: 'EmptyFieldFailure', field: 'email' });
     }
