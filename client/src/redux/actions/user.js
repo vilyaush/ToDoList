@@ -8,7 +8,10 @@ export const regUserThunk = (body) => async (dispatch) => {
     `${process.env.REACT_APP_serverApi}/user/signup`,
     {
       method: 'post',
-      body,
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(body),
       credentials: 'include',
     },
   );
@@ -34,7 +37,7 @@ export const logOutUserThunk = () => async (dispatch) => {
       {
         method: 'post',
         headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ body }),
+        body: JSON.stringify(body),
         credentials: 'include',
       },
     );
@@ -42,19 +45,19 @@ export const logOutUserThunk = () => async (dispatch) => {
     dispatch(logInUser(result));
   };
   
-  export const authUserThunk = (body) => async (dispatch) => {
-    try {
-      // console.log('THUNK_AUTH_________________________________________________________');
-      const response = await fetch(
-        `${process.env.REACT_APP_serverApi}/user/auth`,
-        {
-          credentials: 'include',
-        },
-      );
-      // console.log('RESPONSE FROM AUTH', response);
-      const result = await response.json();
-      dispatch(authUser(result));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // export const authUserThunk = (body) => async (dispatch) => {
+  //   try {
+  //     // console.log('THUNK_AUTH_________________________________________________________');
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_serverApi}/user/auth`,
+  //       {
+  //         credentials: 'include',
+  //       },
+  //     );
+  //     // console.log('RESPONSE FROM AUTH', response);
+  //     const result = await response.json();
+  //     dispatch(authUser(result));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };

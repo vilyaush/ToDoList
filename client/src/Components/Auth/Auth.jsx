@@ -32,8 +32,9 @@ function Auth() {
       formData.append('email', form.email);
       formData.append('password', form.password);
 
-      console.log(Object.fromEntries(formData))
-      dispatch(regUserThunk(formData));
+      // console.log(Object.fromEntries(formData))
+      const data = Object.fromEntries(formData);
+      dispatch(regUserThunk(data));
 
       setForm({});
       event.target.reset();
