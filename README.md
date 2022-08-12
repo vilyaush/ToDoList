@@ -1,3 +1,3 @@
 # ToDoList
 
-ToDo React/Redux + Express
+ToDo React/Redux + Express(with Auth)
