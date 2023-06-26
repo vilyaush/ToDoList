@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Doings } = require('../db/models');
-// const { checkUser } = require('../middleWare/userMiddle');
+const { checkUser } = require('../middleWare/userMiddle');
 
 router.route('/')
 
@@ -10,7 +10,6 @@ router.route('/')
   })
 
   .post(async (req, res) => {
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', req.body);
     const newTodo = await Doings.create(
       {
         title: req.body.title,
@@ -19,24 +18,23 @@ router.route('/')
       }
     
     );
-    console.log('objobjobj', newTodo)
-    // console.log('titletitletitle', {title});
     res.json( newTodo );
-
-    // catch (err) {
-    //     console.log(err)
-    //   }
   });
 
-  // .post(async (req, res) => {
-  //   const { title }  = req.body;
-  //   console.log('iiiiiii',title);
-  //   try {
-  //     const result = await Doings.create({ title, status: false });
-  //     res.json(result);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // })
+  router.route('/:id')
+  .delete(async (req, res) => {
+    await Doings.destroy({ where: { id: req.params.id } });
+    res.sendStatus('200');
+  });
 
+  router.route('/status/:id')
+    .put(async (req, res) => {
+      const updatePost = await Doings.update(
+        { ...req.body, status: req.body.status },
+  
+        { where: { id: Number(req.params.id) } },
+      );
+      const result = await Doings.findOne({ where: { id: +req.params.id }, raw: true });
+      res.json({ result });
+    });
 module.exports = router;

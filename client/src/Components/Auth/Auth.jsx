@@ -25,7 +25,7 @@ function Auth() {
 
       setForm({});
       event.target.reset();
-      navigate('/');
+      navigate('/todo');
     } else if (form.name && form.email && form.password) {
       const formData = new FormData();
       formData.append('name', form.name);
@@ -38,13 +38,13 @@ function Auth() {
 
       setForm({});
       event.target.reset();
-      navigate('/');
+      navigate('/todo');
     }
   };
 
-  // const handleLogout = () => {
-  //   dispatch(logOutUserThunk());
-  // };
+  const handleLogout = () => {
+    dispatch(logOutUserThunk());
+  };
 
   const handleChange = (e) => {
 
@@ -53,17 +53,16 @@ function Auth() {
   };
 
   return (
-    <div className="fon">
-      <div className="formAuth">
-        <h1>Регистрация</h1>
-        <form className="formAuth" onSubmit={handleSubmit}>
+      <div>
+        <form className='formAuth' onSubmit={handleSubmit}>
+        { !loginToggle ? <h1>Регистрация</h1> : <h1>Авторизация</h1>}
           <input
             className="input"
             hidden={loginToggle}
             value={form.name || ''}
             name="name"
             onChange={handleChange}
-            placeholder="Имя"
+            placeholder="   Имя"
           />
 
           <input
@@ -72,7 +71,7 @@ function Auth() {
             value={form.email || ''}
             name="email"
             onChange={handleChange}
-            placeholder="Ваш email"
+            placeholder="   Ваш email"
           />
           <input
             className="input"
@@ -80,19 +79,15 @@ function Auth() {
             value={form.password || ''}
             name="password"
             onChange={handleChange}
-            placeholder="Ваш пароль"
+            placeholder="   Ваш пароль"
           />
-
           <label className="container">
             Уже зарегестрированы?
             <input className="check" type="checkbox" onChange={handleForm} />
           </label>
-
-          <button className="regButton" type="submit">{loginToggle ? 'Войти' : 'Зарегистрироваться'}</button>
-          {/* <button className="regButton" type="submit" onClick={handleLogout}> Выйти</button> */}
+          <button className="regButton" type="submit">Отправить</button>
         </form>
       </div>
-    </div>
   );
 }
 

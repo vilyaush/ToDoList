@@ -1,24 +1,23 @@
 import React, {useEffect} from 'react'
 import Todo from '../Todo/Todo'
 import { useSelector, useDispatch } from 'react-redux';
-import { getTodoThunk } from '../../redux/actions/doing';
+import { getTodoThunk, deleteTodoThunk, EditTodoThunk } from '../../redux/actions/doing';
+import { authUserThunk } from '../../redux/actions/user';
+import Auth from '../Auth/Auth';
+import TodoList from '../TodoList/TodoList';
 
 function Main() {
-  const doings = useSelector((state) => state.doings);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTodoThunk());
-  }, []);
+    dispatch(authUserThunk())
+  })
 
   return (
-    <div>
-   <Todo/>
-   {doings.map((el) => (
-     <div className="doingList" key={el.id}>
-       <p>{el.title} <input type='checkbox'/><button>Редактировать</button></p>
-       </div>
-      ))}
+    <div className='main'>
+    {!user?.id ? <Auth/> : <TodoList/>}
+  
     </div>
   )
 }

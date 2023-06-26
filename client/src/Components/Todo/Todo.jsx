@@ -7,32 +7,13 @@ function Todo() {
   const [form, setForm] = useState({});
   const [todo, setTask] = useState({ title: '', user_id: ''});
 
-  // const userId = useSelector((state) => state.users.id);
-
   const dispatch = useDispatch();
 
   const handleSubmit = (newTask,e) => {
-    // e.preventDefault();
-    // const formData = new FormData();
-    // formData.append('title', form.title);
-    // // formData.append('user_id', userId);
-    // formData.append('status', false);
-
-    // console.log(Object.fromEntries(formData));
-
-    // dispatch(createTodoThunk(formData));
-    // setForm({});
-    // e.target.reset();
     e.preventDefault();
     dispatch(createTodoThunk(newTask));
     setForm({});
-    // navigate('/');
   };
-  // const handleChange = (e) => {
-  //   setTask({ title: e.target.value });
-  // };
-  // {(e) => setTask({ text: e.target.value, user_id: user.id })}
-//   console.log(e.target.value)
 
   return (
     <div>

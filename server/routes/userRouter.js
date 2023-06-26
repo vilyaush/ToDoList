@@ -9,15 +9,10 @@ router.route('/signup')
         email, password, name
       } = req.body;
 
-console.log('bodybodybody',req.body);
-// console.log('reqreqreqreqreqreqreq', req);
       const pass = await Bcrypt.hash(password);
-console.log('paspapspapspappsppa', pass);
       const result = await Users.create({
         email, password: pass, name
       });
-      console.log(result, 'nnnnnnnnnnnnnnnn');
-      console.log('-----------------------------');
       if (result.id) {
         req.session.userId = result.id;
         req.session.userName = result.name;
@@ -34,7 +29,6 @@ console.log('paspapspapspappsppa', pass);
 
 router.route('/logout')
   .get(async (req, res) => {
-    // console.log('999999999999999999');
     try {
       req.session.destroy();
       res.clearCookie('sid');
@@ -46,7 +40,7 @@ router.route('/logout')
 
 router.route('/signin')
   .post(async (req, res) => {
-    // console.log('singin999999999999');
+    console.log('singin999999999999');
     const { email, password } = req.body;
     if (!email) {
       return res.json({ text: 'EmptyFieldFailure', field: 'email' });
@@ -80,9 +74,7 @@ router.route('/signin')
   router.route('/auth')
   .get(async (req, res) => {
     try {
-      // console.log('REQEST AUTH-----------------------------------------------------------',req.session);
       const result = await Users.findByPk(req.session.userId);
-      // console.log( 'RESPONSE AUTH', result);
       res.json(result);
     } catch (error) {
       console.log(error);
