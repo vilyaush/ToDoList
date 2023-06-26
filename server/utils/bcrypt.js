@@ -12,5 +12,5 @@ const Bcrypt = {
   },
 };
 
-console.log('----------',Bcrypt);
+// console.log('----------',Bcrypt);
 module.exports = Bcrypt;

@@ -1,7 +1,8 @@
 const getTodo = (data) => ({ type: 'GET_TODO', payload: data });
 const createTodo = (data) => ({ type: 'CREATE_TODO', payload: data });
 const deleteTodo = (id) => ({type: 'DELETE_TODO', payload: id})
-const editStatus = (id, status) => ({type: 'EDIT_STATUS', payload: {id, status}})
+const editStatus = (status) => ({type: 'EDIT_STATUS', payload: {status}})
+const editTodo = (id, data) => ({ type: 'EDIT_TODO', payload: { id, data } });
 
 export const getTodoThunk = () => async (dispatch) => {
     const response = await fetch(`${process.env.REACT_APP_serverApi}/todo`); 
@@ -44,7 +45,7 @@ export const editStatusThunk = (id, status) => async (dispatch) => {
   const response = await fetch(
     `${process.env.REACT_APP_serverApi}/todo/status/${id}`,
     {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
       'Content-type': 'application/json'
      },
@@ -54,6 +55,30 @@ export const editStatusThunk = (id, status) => async (dispatch) => {
   );
   if(response.ok) {
     const result = await response.json();
-    dispatch(editStatus(result))
+    dispatch(editStatus({id, status: result.status}))
   }
 }
+
+export const editTodoThunk = (id, data) => async (dispatch) => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_serverApi}/todo/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+      credentials: 'include',
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      dispatch(editTodo(id, result));
+    } else {
+      // Handle error case
+      console.error('Failed to update todo');
+    }
+  } catch (error) {
+    console.error(error);
+    // Handle error case
+  }
+};

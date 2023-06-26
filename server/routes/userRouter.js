@@ -22,7 +22,7 @@ router.route('/signup')
       }
       throw Error(result);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return res.json(error);
     }
   });
@@ -40,7 +40,7 @@ router.route('/logout')
 
 router.route('/signin')
   .post(async (req, res) => {
-    console.log('singin999999999999');
+    // console.log('singin999999999999');
     const { email, password } = req.body;
     if (!email) {
       return res.json({ text: 'EmptyFieldFailure', field: 'email' });
@@ -77,7 +77,7 @@ router.route('/signin')
       const result = await Users.findByPk(req.session.userId);
       res.json(result);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.json(error);
     }
   });
