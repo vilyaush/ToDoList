@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { regUserThunk, logInUserThunk, logOutUserThunk } from '../../redux/actions/user';
+import { useDispatch } from 'react-redux';
+import { regUserThunk, logInUserThunk } from '../../redux/actions/user';
 
 function Auth() {
   const [loginToggle, setLoginToggle] = useState(false);
@@ -9,9 +9,6 @@ function Auth() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const user = useSelector((state) => state.user);
-  // console.log(user);
 
   const handleForm = () => {
     setLoginToggle(!loginToggle);
@@ -31,8 +28,6 @@ function Auth() {
       formData.append('name', form.name);
       formData.append('email', form.email);
       formData.append('password', form.password);
-
-      // console.log(Object.fromEntries(formData))
       const data = Object.fromEntries(formData);
       dispatch(regUserThunk(data));
 
@@ -42,14 +37,8 @@ function Auth() {
     }
   };
 
-  const handleLogout = () => {
-    dispatch(logOutUserThunk());
-  };
-
   const handleChange = (e) => {
-
       setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    
   };
 
   return (

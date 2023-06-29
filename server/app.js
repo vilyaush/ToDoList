@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const express = require('express');
-// const morgan = require('morgan');
 
 const path = require('path');
 const cors = require('cors');
@@ -23,7 +22,6 @@ app.use(cors({
   
   }));
 
-// app.use(morgan('dev'));
 app.use(express.static(path.join(process.env.PWD, 'public'))); 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 

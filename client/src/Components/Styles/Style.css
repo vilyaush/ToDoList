@@ -1,5 +1,4 @@
 .App {
-    text-align: center;
     width: 100%;
     height: 5000px;
     background-color: rgb(240, 238, 241);
@@ -13,53 +12,83 @@
 
 .allToDo {  
     display: flex;
-    flex-direction: row;
+    flex-direction:column;
     flex-wrap: wrap;
-    justify-content: center;
     padding: 10px;
     margin-top: 20px;
 
 }
 
 .doingList {
-    width: 250px;
-    text-align: center;
+    width: 600px;
+    height: 80px;
     font-size: x-large;
-    color: aliceblue;
-    background-color: blueviolet;
-    border-style:double;
-    border-color: rgb(111, 6, 143);
-    border-width: 7px;
-    margin-right: 50px;
+    color: rgb(9, 11, 12);
+    background-color: rgb(206, 206, 206);
+    border-style:none;
+    border-radius: 10px;
     margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    
     
 }
 
+.doinginpt {
+    margin-left: 8px;
+    display: flex;
+    flex-direction: row;
+}
+
+.doingbtn {
+    display: flex;
+    justify-content: left;
+    margin-right:8px;
+
+}
+.doingbtn button {
+    margin-left: 10px;
+    margin-top: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+.p {
+margin-left: 3px;
+}
+
 .navBar {
-   display: flex;
-   justify-content: center;
-   flex-direction: row;
-   font-size: x-large;
+   background-color: rgb(43, 41, 41);
+   color: aliceblue;
    
 }
 
 .navel {
     margin-right: 70px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn {
+    margin-top: 30px;
+    color: aliceblue;
 
 }
 
 .d-flex {
     display: flex;
     justify-content: center;
-    margin-bottom: 150px;
 }
 
 .d-flex input{
-   background-color: rgb(233, 197, 224);
+   background-color: rgb(241, 235, 240);
    margin-right: 10px;
-   width: 250px;
-   height: 25px;
+   width: 450px;
+   height: 30px;
    font-size: 20px;
    border-radius: 5px;
 }
@@ -67,9 +96,17 @@
 .d-flex button{
    background-color: rgb(106, 106, 214);
    border-radius: 7px;
-   width: 110px;
-   height: 32px;
-   color:antiquewhite
+   width: 120px;
+   height: 37px;
+   color:antiquewhite;
+   margin-top: 0px;
+}
+
+.g{
+   background-color: rgb(44, 165, 44);
+}
+.r {
+   background-color: rgb(221, 67, 67);
 }
 
 .formAuth {
@@ -98,4 +135,22 @@
     border-radius: 20px;
     background-color: rgb(228, 228, 27);
     border-style: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pagination button {
+  background: none;
+  border: none;
+  color: rgb(37, 37, 51);
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.pagination button.active {
+  text-decoration: underline;
 }

@@ -16,12 +16,12 @@ function Todo() {
   };
 
   return (
-    <div>
+    <>
      <form className="d-flex">
-        <input className="form-control me-2" type="text" value={todo.title || ''} name="title"  onChange={(e) => setTask({ title: e.target.value || '', user_id: user.id })} placeholder="задание"/>
+        <input className="form-control me-2" type="text" value={todo.title || ''} name="title"  onChange={(e) => setTask({ title: e.target.value || '', user_id: user.user.id })} placeholder="задание"/>
         <button className="btn btn-outline-dark"  type="submit" onClick={(e) => handleSubmit(todo, e)}>Добавить</button>
      </form>
-   </div>
+   </>
   );
 
 };

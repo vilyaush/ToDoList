@@ -74,11 +74,9 @@ export const editTodoThunk = (id, data) => async (dispatch) => {
       const result = await response.json();
       dispatch(editTodo(id, result));
     } else {
-      // Handle error case
       console.error('Failed to update todo');
     }
   } catch (error) {
     console.error(error);
-    // Handle error case
   }
 };

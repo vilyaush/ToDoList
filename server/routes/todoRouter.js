@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { Doings } = require('../db/models');
-// const { checkUser } = require('../middleWare/userMiddle');
 
 router.route('/')
 
