@@ -8,11 +8,11 @@ import { useDispatch } from 'react-redux';
 
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(authUserThunk())
-  },[dispatch])
+  // useEffect(() => {
+  //   dispatch(authUserThunk())
+  // },[dispatch])
   return (
     <div className="App">
     <NavBar/>

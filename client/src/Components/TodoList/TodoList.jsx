@@ -18,7 +18,7 @@ function TodoList() {
 
   useEffect(() => {
     dispatch(authUserThunk())
-  },[])
+  })
 
   const handleDelete = (id) => {
     dispatch(deleteTodoThunk(id));
@@ -55,8 +55,8 @@ function TodoList() {
   };
 
   return (
-    <div>
-      <Todo />
+    <>
+      <Todo/>
       <div className='allToDo'>
           {doings.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((el) => (
            <div className="doingList" key={el.id}>
@@ -79,6 +79,28 @@ function TodoList() {
           </div>
         ))}
       </div>
+
+       {editForm.id && (
+        <form className='formi' onSubmit={handleEditFormSubmit}>
+          <div>
+          <input
+            className='formiInput'
+            type="text"
+            value={editForm.title}
+            onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
+          />
+          <input
+            type="checkbox"
+            checked={editForm.status}
+            onChange={(e) => setEditForm({ ...editForm, status: e.target.checked })}
+          />
+          </div>
+          <div>
+          <button type="submit">Сохранить</button>
+          <button type="button" onClick={handleEditFormClose}>Отмена</button>
+          </div>
+        </form>
+      )}
       
       <div className="pagination">
         {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
@@ -91,24 +113,7 @@ function TodoList() {
           </button>
         ))}
       </div>
-
-      {editForm.id && (
-        <form onSubmit={handleEditFormSubmit}>
-          <input
-            type="text"
-            value={editForm.title}
-            onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
-          />
-          <input
-            type="checkbox"
-            checked={editForm.status}
-            onChange={(e) => setEditForm({ ...editForm, status: e.target.checked })}
-          />
-          <button type="submit">Сохранить</button>
-          <button type="button" onClick={handleEditFormClose}>Отмена</button>
-        </form>
-      )}
-    </div>
+    </>
   );
 }
 

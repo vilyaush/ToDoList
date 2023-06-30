@@ -13,12 +13,10 @@ function NavBar() {
   };
   
   return (
-    <div className="navBar">
       <div className='navel'>
-        {user.user && user.user?.id ? <h1>{user.user.name}</h1> : <h1>TODO</h1>}
+        {user.user && user.user?.id ? <h1>{user.user.name}</h1> : <h1>Список дел</h1>}
         {user?.user && user.user?.id ? <Link to="/" onClick={handleLogout} className='btn'>Выйти</Link> : <Link to="/auth" className='btn'>Вoйти</Link>}
       </div>
-    </div>
   )
 }
 
